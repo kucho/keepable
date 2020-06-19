@@ -1,34 +1,34 @@
 COLORS = [
   {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     shadow: true,
   },
   {
-    color: "#F28B82",
+    color: '#F28B82',
   },
   {
-    color: "#FBBC04",
+    color: '#FBBC04',
   },
   {
-    color: "#FFF475",
+    color: '#FFF475',
   },
   {
-    color: "#CCFF90",
+    color: '#CCFF90',
   },
   {
-    color: "#A7FFEB",
+    color: '#A7FFEB',
   },
   {
-    color: "#CBF0F8",
+    color: '#CBF0F8',
   },
   {
-    color: "#AECBFA",
+    color: '#AECBFA',
   },
   {
-    color: "#D7AEFB",
+    color: '#D7AEFB',
   },
   {
-    color: "#FDCFE8",
+    color: '#FDCFE8',
   },
 ];
 
@@ -38,12 +38,12 @@ COLORS = [
 
 /** ** Starts Victor *** */
 function checkAnyNote() {
-  const notes = document.querySelectorAll(".note");
-  const placeholder = document.querySelector(".notes-placeholder");
+  const notes = document.querySelectorAll('.note');
+  const placeholder = document.querySelector('.notes-placeholder');
   if (notes === null) {
-    placeholder.classList.remove("hide");
+    placeholder.classList.remove('hide');
   } else {
-    placeholder.classList.add("hide");
+    placeholder.classList.add('hide');
   }
 }
 
@@ -56,23 +56,22 @@ function changeNoteColor(note, color) {
 
 // Palette => <a role="button"></a>
 function toggleColorPicker(palette) {
-  const colorPicker = palette.parentNode.querySelector(".color-picker");
-  console.log(colorPicker);
-  if (colorPicker.classList.contains("flex")) {
-    colorPicker.classList.remove("flex");
+  const colorPicker = palette.parentNode.querySelector('.color-picker');
+  if (colorPicker.classList.contains('hide')) {
+    colorPicker.classList.remove('hide');
   } else {
-    colorPicker.classList.add("flex");
+    colorPicker.classList.add('hide');
   }
 }
 
 function createColorPicker() {
-  const colorPicker = document.createElement("div");
-  colorPicker.classList.add("color-picker");
-  COLORS.forEach((colorObj) => {
-    const colorBall = document.createElement("div");
-    colorBall.classList.add("color-ball");
+  const colorPicker = document.createElement('div');
+  colorPicker.className = 'color-picker hide';
+  COLORS.forEach(colorObj => {
+    const colorBall = document.createElement('div');
+    colorBall.classList.add('color-ball');
     if (colorObj.shadow) {
-      colorBall.classList.add("color-ball--shadow");
+      colorBall.classList.add('color-ball--shadow');
     }
     colorBall.dataset.color = colorObj.color;
     colorBall.style.backgroundColor = colorObj.color;
@@ -83,15 +82,15 @@ function createColorPicker() {
 
 function createPalette(target, container) {
   target.append(createColorPicker());
-  const colorBalls = container.querySelectorAll(".color-ball");
-  const palette = container.querySelector(".palette");
+  const colorBalls = container.querySelectorAll('.color-ball');
+  const palette = container.querySelector('.palette');
   for (const ball of colorBalls) {
-    ball.addEventListener("click", () => {
+    ball.addEventListener('click', () => {
       changeNoteColor(container, ball.dataset.color);
       toggleColorPicker(palette);
     });
   }
-  palette.addEventListener("click", () => {
+  palette.addEventListener('click', () => {
     toggleColorPicker(palette);
   });
 }
@@ -100,10 +99,10 @@ function createPalette(target, container) {
 
 /** ** Starts Zamir *** */
 function insertNote() {
-  const formColor = document.querySelector(".notes-form").dataset.color;
-  const inputText = document.querySelector(".notes-form__textarea");
-  const article = document.createElement("article");
-  article.classList.add("note");
+  const formColor = document.querySelector('.notes-form').dataset.color;
+  const inputText = document.querySelector('.notes-form__textarea');
+  const article = document.createElement('article');
+  article.classList.add('note');
   article.innerHTML = `
   <div class="note__content">
     <h1 class="note__title">2gfa</h1>
@@ -128,22 +127,56 @@ function insertNote() {
     </button>
   </div>`;
   article.style.backgroundColor = formColor;
-  const noteActions = article.querySelector(".note__actions");
+  const noteActions = article.querySelector('.note__actions');
   createPalette(noteActions, article);
-  document.querySelector(".others").prepend(article);
+  // To delete a note:
+  const deleteIcon = article.querySelector('.delete-icon');
+  deleteIcon.addEventListener('click', () => softDeleteNote(article));
+  document.querySelector('.others').prepend(article);
   checkAnyNote();
+}
+
+function softDeleteNote(note) {
+  note.parentNode.removeChild(note);
+  const trash = document.querySelector('.trash');
+  trash.prepend(note);
+}
+
+function toggleSections(section) {
+  if (section.classList.contains('hide')) {
+    section.classList.remove('hide');
+  } else {
+    section.classList.add('hide');
+  }
 }
 /** ** Ends Zamir *** */
 
 /** ** Starts General *** */
 window.onload = () => {
-  const formButton = document.querySelector(".notes-form__btn");
-  formButton.addEventListener("click", () => {
+  const formButton = document.querySelector('.notes-form__btn');
+  formButton.addEventListener('click', () => {
     insertNote();
   });
 
-  const notesForm = document.querySelector(".notes-form");
-  const noteActions = notesForm.querySelector(".notes-form__actions");
+  const notesForm = document.querySelector('.notes-form');
+  const noteActions = notesForm.querySelector('.notes-form__actions');
   createPalette(noteActions, notesForm);
+
+  const goToNotes = document.querySelector('.go-to--notes');
+  const goToTrash = document.querySelector('.go-to--trash');
+  goToTrash.addEventListener('click', function() {
+    toggleSections(document.querySelector('.trash'));
+    this.parentNode.classList.toggle('active');
+    goToNotes.parentNode.classList.toggle('active');
+    toggleSections(document.querySelector('.notes-zone'));
+    notesForm.classList.toggle('hide');
+  });
+  goToNotes.addEventListener('click', function() {
+    toggleSections(document.querySelector('.trash'));
+    this.parentNode.classList.toggle('active');
+    goToTrash.parentNode.classList.toggle('active');
+    toggleSections(document.querySelector('.notes-zone'));
+    notesForm.classList.toggle('hide');
+  });
 };
 /** ** Ends General *** */
