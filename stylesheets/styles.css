@@ -4,6 +4,7 @@
   --nav-width: 300px;
   --placeholder-width: 280px;
   --color-active: #999b9e;
+  --color-picker-width: 155px;
 }
 
 * {
@@ -47,6 +48,7 @@ header {
 
 nav {
   width: var(--nav-width);
+  flex-shrink: 0;
   border-right: 1px solid white;
   height: 100%;
 }
@@ -112,6 +114,8 @@ main {
 }
 
 .notes-zone {
+  display: flex;
+  flex-flow: column;
 }
 
 .notes-placeholder::before {
@@ -150,7 +154,15 @@ main {
 }
 
 .flex {
-  display: flex;
+  display: flex !important;
+}
+
+.delete-icon,
+.palette {
+  cursor: pointer;
+  background: transparent;
+  box-shadow: none;
+  border: none;
 }
 
 /**** Ends General ****/
@@ -169,8 +181,9 @@ main {
   border-radius: 1em;
   padding: 1em;
 }
-.notes-form div {
+.notes-form__actions {
   display: flex;
+  position: relative;
   justify-content: space-between;
   padding-left: 1em;
   padding-right: 1em;
@@ -182,6 +195,7 @@ main {
   width: 100%;
   padding: 1em;
   height: 100px;
+  background: transparent;
 }
 .notes-form__btn {
   border: none;
@@ -196,6 +210,31 @@ main {
 /**** Ends Marvin ****/
 
 /**** Starts Victor ****/
+.color-picker {
+  position: absolute;
+  display: none;
+  top: -300%;
+  justify-content: center;
+  width: var(--color-picker-width);
+  flex-flow: row wrap;
+  background: #ffffff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding-top: 5px;
+  padding-right: 5px;
+}
+.color-ball {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 0 0 5px 5px;
+}
+.color-ball--shadow {
+  -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5);
+}
 
 /**** Ends Victor ****/
 
@@ -217,9 +256,13 @@ main {
 
 .note__content {
   font-size: 1.125rem;
+  overflow-wrap: break-word;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .note__actions {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -233,6 +276,7 @@ main {
 .trash {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   padding: 30px;
 }
 
