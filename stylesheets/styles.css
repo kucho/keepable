@@ -156,12 +156,12 @@ main {
 /**** Ends General ****/
 
 /**** Starts Marvin ****/
-.enter-note{
+.enter-note {
   display: flex;
   justify-content: center;
 }
 
-.notes-form{
+.notes-form {
   /* border: 1px solid white; */
   margin-top: 2em;
   width: 600px;
@@ -169,13 +169,13 @@ main {
   border-radius: 1em;
   padding: 1em;
 }
-.notes-form div{
+.notes-form div {
   display: flex;
   justify-content: space-between;
   padding-left: 1em;
   padding-right: 1em;
 }
-.notes-form__textarea{
+.notes-form__textarea {
   border-radius: 1em;
   resize: none;
   border: none;
@@ -183,14 +183,14 @@ main {
   padding: 1em;
   height: 100px;
 }
-.notes-form__btn{
+.notes-form__btn {
   border: none;
   background-color: transparent;
   font-weight: bold;
   font-size: 18px;
   line-height: 24px;
 }
-.notes-form__btn:hover{
+.notes-form__btn:hover {
   cursor: pointer;
 }
 /**** Ends Marvin ****/
@@ -200,5 +200,40 @@ main {
 /**** Ends Victor ****/
 
 /**** Starts Zamir ****/
+.note {
+  background-color: white;
+  box-shadow: 5px 5px 15px rgba(153, 155, 158, 0.85);
+  border-radius: 8px;
+  color: black;
+  height: 260px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  width: 260px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.note__content {
+  font-size: 1.125rem;
+}
+
+.note__actions {
+  display: flex;
+  align-items: center;
+}
+
+.note__action {
+  margin-right: 30px;
+}
+
+.pinned,
+.others,
+.trash {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 30px;
+}
 
 /**** Ends Zamir ****/
