@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Keepable</title>
-    <link rel="stylesheet" href="./stylesheets/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <script src="./scripts/functions.js"></script>
-  </head>
-  <body>
-    <header>
-      <h1 class="logo">
-        <a href="#">{keep<span class="logo-alt">able</span>}</a>
-      </h1>
-      <section class="welcome">
-        <p>
-          Welcome to {keepable}. <span class="forecast">Forecastholder</span>
-        </p>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Keepable</title>
+  <link rel="stylesheet" href="./stylesheets/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script src="./scripts/functions.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1 class="logo">
+      <a href="#">{keep<span class="logo-alt">able</span>}</a>
+    </h1>
+    <section class="welcome">
+      <p>
+        Welcome to {keepable}. <span class="forecast">Forecastholder</span>
+      </p>
+    </section>
+  </header>
+  <div class="content-wrapper">
+    <nav>
+      <ul class="links">
+        <li class="active">
+          <a href="#" class="flex"><img class="fill-white" src="./assets/brackets.svg" alt="notes" />Notes</a>
+        </li>
+        <li>
+          <a href="#" class="flex"><img class="fill-white" src="./assets/trash.svg" alt="trash" />Trash</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <div class="notes-placeholder">
+        Notes you add appear here
+      </div>
+      <section class="enter-note">
+
+        <div class="notes-form">
+          <textarea name="" id="" cols="30" rows="10" placeholder="Some great think!"
+            class="notes-form__textarea"></textarea>
+          <div>
+            <a href="#" role="button" class="palette">
+              <img src="assets/palette.svg" alt="" class="fill-gray">
+            </a>
+            <button class="notes-form__btn">Keep it!</button>
+          </div>
+        </div>
+
       </section>
-    </header>
-    <div class="content-wrapper">
-      <nav>
-        <ul class="links">
-          <li class="active">
-            <a href="#" class="flex"
-              ><img
-                class="fill-white"
-                src="./assets/brackets.svg"
-                alt="notes"
-              />Notes</a
-            >
-          </li>
-          <li>
-            <a href="#" class="flex"
-              ><img
-                class="fill-white"
-                src="./assets/trash.svg"
-                alt="trash"
-              />Trash</a
-            >
-          </li>
-        </ul>
-      </nav>
-      <main>
-        <div class="notes-placeholder">
-          Notes you add appear here
-        </div>
-        <section class="enter-note"></section>
-        <div class="notes-zone">
-          <section class="pinned"></section>
-          <section class="others"></section>
-          <section class="trash"></section>
-        </div>
-      </main>
-    </div>
-  </body>
+      <div class="notes-zone">
+        <section class="pinned"></section>
+        <section class="others"></section>
+        <section class="trash"></section>
+      </div>
+    </main>
+  </div>
+</body>
+
 </html>
