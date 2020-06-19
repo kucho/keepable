@@ -176,6 +176,7 @@ main {
   background-color: #fff;
   border-radius: 1em;
   padding: 1em;
+  box-shadow: 5px 5px 15px rgba(153, 155, 158, 0.85);
 }
 .notes-form__actions {
   display: flex;
