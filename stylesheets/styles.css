@@ -154,7 +154,9 @@ main {
 }
 
 .delete-icon,
-.palette {
+.palette,
+.restore-icon,
+.hard-delete-icon {
   cursor: pointer;
   background: transparent;
   box-shadow: none;

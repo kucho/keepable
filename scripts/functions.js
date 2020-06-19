@@ -125,6 +125,20 @@ function insertNote() {
         class="note__action fill-gray"
       />
     </button>
+    <button class="hard-delete-icon note__icon hide">
+      <img
+        src="assets/trash.svg"
+        alt=""
+        class="note__action fill-gray"
+      />
+    </button>
+    <button class="restore-icon note__icon hide">
+      <img
+        src="assets/undo.svg"
+        alt=""
+        class="note__action fill-gray"
+      />
+    </button>
   </div>`;
   article.style.backgroundColor = formColor;
   const noteActions = article.querySelector('.note__actions');
@@ -132,13 +146,50 @@ function insertNote() {
   // To delete a note:
   const deleteIcon = article.querySelector('.delete-icon');
   deleteIcon.addEventListener('click', () => softDeleteNote(article));
+
+  const hardDelete = article.querySelector('.hard-delete-icon');
+  hardDelete.addEventListener('click', () => {
+    hardDleteNote(article);
+  });
+
+  const restoreIcon = article.querySelector('.restore-icon');
+  restoreIcon.addEventListener('click', () => {
+    restoreNote(article)
+  });
+
   document.querySelector('.others').prepend(article);
   checkAnyNote();
+}
+
+function hardDleteNote(note) {
+  note.parentNode.removeChild(note);
+}
+
+function restoreNote(note) {
+  note.parentNode.removeChild(note);
+  const others = document.querySelector('.others');
+  const palette = note.querySelector('.palette')
+  palette.classList.remove('hide');
+  const deleteIcon = note.querySelector('.delete-icon');
+  deleteIcon.classList.remove('hide');
+  const hardDelete = note.querySelector('.hard-delete-icon');
+  hardDelete.classList.add('hide');
+  const restoreIcon = note.querySelector('.restore-icon');
+  restoreIcon.classList.add('hide');
+  others.prepend(note);
 }
 
 function softDeleteNote(note) {
   note.parentNode.removeChild(note);
   const trash = document.querySelector('.trash');
+  const palette = note.querySelector('.palette')
+  palette.classList.add('hide');
+  const deleteIcon = note.querySelector('.delete-icon');
+  deleteIcon.classList.add('hide');
+  const hardDelete = note.querySelector('.hard-delete-icon');
+  hardDelete.classList.remove('hide');
+  const restoreIcon = note.querySelector('.restore-icon');
+  restoreIcon.classList.remove('hide');
   trash.prepend(note);
 }
 
@@ -164,14 +215,14 @@ window.onload = () => {
 
   const goToNotes = document.querySelector('.go-to--notes');
   const goToTrash = document.querySelector('.go-to--trash');
-  goToTrash.addEventListener('click', function() {
+  goToTrash.addEventListener('click', function () {
     toggleSections(document.querySelector('.trash'));
     this.parentNode.classList.toggle('active');
     goToNotes.parentNode.classList.toggle('active');
     toggleSections(document.querySelector('.notes-zone'));
     notesForm.classList.toggle('hide');
   });
-  goToNotes.addEventListener('click', function() {
+  goToNotes.addEventListener('click', function () {
     toggleSections(document.querySelector('.trash'));
     this.parentNode.classList.toggle('active');
     goToTrash.parentNode.classList.toggle('active');
