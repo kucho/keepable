@@ -60,7 +60,7 @@ main {
 
 .content-wrapper {
   display: flex;
-  height: 100%;
+  height: auto;
 }
 
 .logo {
@@ -150,11 +150,7 @@ main {
 }
 
 .hide {
-  display: none;
-}
-
-.flex {
-  display: flex !important;
+  display: none !important;
 }
 
 .delete-icon,
@@ -212,7 +208,7 @@ main {
 /**** Starts Victor ****/
 .color-picker {
   position: absolute;
-  display: none;
+  display: flex;
   top: -300%;
   justify-content: center;
   width: var(--color-picker-width);
