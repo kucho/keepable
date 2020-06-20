@@ -99,11 +99,10 @@ function getForecast() {
       const location = resp["location"]["name"];
       const region = resp["location"]["region"];
       const country = resp["location"]["country"];
-      const temp =
-        resp["forecast"][Object.keys(resp["forecast"])[0]]["avgtemp"];
-      const current = resp["current"]["weather_descriptions"].join(", ");
+      const temp = resp["current"]["temp_c"];
+      const condition = resp["current"]["condition"]["text"];
       const forecastMessage = document.querySelector(".forecast");
-      forecastMessage.textContent = `Today's Forecast for ${location}, ${region}, ${country}: ${temp}, ${current}`;
+      forecastMessage.textContent = `Today's Forecast for ${location}, ${region}, ${country}: ${temp}°, ${condition}`;
     });
   };
 
@@ -121,10 +120,11 @@ function getForecast() {
 
 async function fetchForecastAPI(latitude, longitude) {
   const response = fetch(
-    "http://api.weatherstack.com/forecast?" +
+    "https://api.weatherapi.com/v1/forecast.json?" +
       new URLSearchParams({
-        access_key: "9a0e40a81aa4893cb24cb294fedfd99d",
-        query: `${latitude},${longitude}`,
+        key: "cf981e4b895749c39ea42222201906",
+        q: `${latitude},${longitude}`,
+        days: 1,
       })
   );
   return await response;
