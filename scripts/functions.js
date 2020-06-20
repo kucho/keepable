@@ -137,7 +137,6 @@ function insertNote() {
   article.classList.add("note");
   article.innerHTML = `
   <div class="note__content">
-    <h1 class="note__title">2gfa</h1>
     <p class="note__description">
       ${inputText.value}
     </p>
